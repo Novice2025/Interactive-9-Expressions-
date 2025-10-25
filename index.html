@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive English Expressions</title>
+    <!-- Chosen Palette: Warm Neutral & Subtle Sage -->
+    <!-- Application Structure Plan: The static markdown report is redesigned into a dynamic, interactive flashcard grid. This is a more effective learning tool. The main structure consists of a filter/navigation header and a content grid. Users can filter cards by theme (Everyday, Romance, Business) which hides/shows cards. Users then click a card (expression) to reveal the "back" (meaning/examples). This promotes active recall and focused study, achieving the SPA's goal of making content "easily consumable and explorable" in a way a static list cannot. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: A list of 9 English expressions, grouped by theme.
+        - Goal: Interactive learning and self-quizzing.
+        - Presentation Method: A grid of "flashcard" components built with HTML/Tailwind. The "front" shows the expression; the "back" (initially hidden) shows the meaning/example table.
+        - Interaction: 1) Click-to-Reveal: Clicking a card toggles the 'hidden' class on the card-back 'div' (Vanilla JS). 2) Filtering: Clicking a nav button filters the grid by adding/removing 'hidden' from parent card-containers based on a 'data-category' attribute (Vanilla JS).
+        - Justification: This structure directly encourages user interaction, active recall, and focused study by category.
+        - Library/Method: HTML, Tailwind CSS, and Vanilla JavaScript.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .card-container {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .card-back {
+            transition: all 0.3s ease-in-out;
+        }
+        .nav-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-button.active-nav {
+            background-color: #f59e0b; /* amber-500 */
+            color: #1f2937; /* gray-800 */
+            font-weight: 700;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-amber-50 text-neutral-800 min-h-screen">
+
+    <!-- Header and Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-center py-4">
+                <h1 class="text-3xl font-bold text-emerald-700">Interactive Expressions</h1>
+                <nav class="mt-4 sm:mt-0 flex flex-wrap justify-center gap-2">
+                    <button class="nav-button active-nav px-4 py-2 rounded-full text-sm font-medium text-neutral-700 bg-neutral-200 hover:bg-neutral-300" data-filter="all" onclick="filterCards('all', this)">
+                        All (9)
+                    </button>
+                    <button class="nav-button px-4 py-2 rounded-full text-sm font-medium text-neutral-700 bg-neutral-200 hover:bg-neutral-300" data-filter="everyday" onclick="filterCards('everyday', this)">
+                        Everyday (3)
+                    </button>
+                    <button class="nav-button px-4 py-2 rounded-full text-sm font-medium text-neutral-700 bg-neutral-200 hover:bg-neutral-300" data-filter="romance" onclick="filterCards('romance', this)">
+                        Romance (3)
+                    </button>
+                    <button class="nav-button px-4 py-2 rounded-full text-sm font-medium text-neutral-700 bg-neutral-200 hover:bg-neutral-300" data-filter="business" onclick="filterCards('business', this)">
+                        Business (3)
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- Introductory Paragraph -->
+        <div class="mb-8 p-6 bg-white rounded-lg shadow">
+            <h2 class="text-2xl font-bold text-emerald-700 mb-2">Welcome to Your Lesson!</h2>
+            <p class="text-neutral-700">This application transforms your lesson into an interactive experience. The expressions from your report are organized into three themes: <strong class="text-emerald-700">Everyday</strong>, <strong class="text-emerald-700">Romance</strong>, and <strong class="text-emerald-700">Business</strong>.</p>
+            <ul class="list-disc list-inside mt-2 text-neutral-600">
+                <li>Use the filters above to focus on a single category.</li>
+                <li>Click any card to flip it over and reveal the meaning and examples.</li>
+            </ul>
+        </div>
+
+        <!-- Card Grid -->
+        <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Card #1 -->
+            <div class="card-container" data-category="everyday">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-emerald-700 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#1 AFTER ALL</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-emerald-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">In spite of considerations or expectations.</td>
+                                    <td class="py-3 pl-2 italic">It looks like Matthew will go to medical school <strong>after all</strong>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">In view of all the circumstances.</td>
+                                    <td class="py-3 pl-2 italic">Don’t worry. <strong>After all</strong>, he will leave tomorrow.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card #2 -->
+            <div class="card-container" data-category="everyday">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-emerald-700 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#2 ALL OF A SUDDEN</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-emerald-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">Very quickly in usually an unexpected way.</td>
+                                    <td class="py-3 pl-2 italic"><strong>All of a sudden</strong> the lights started to flash in the room.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">Suddenly / Without warning.</td>
+                                    <td class="py-3 pl-2 italic"><strong>All of a sudden</strong> we heard a loud boom.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card #3 -->
+            <div class="card-container" data-category="everyday">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-emerald-700 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#3 BETTER OFF</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-emerald-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">To be in a more advantageous position.</td>
+                                    <td class="py-3 pl-2 italic">They would be <strong>better off</strong> going home early.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">To be in a more satisfactory condition or situation.</td>
+                                    <td class="py-3 pl-2 italic">We would all be <strong>better off</strong> just saving money and going back home.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card #4 -->
+            <div class="card-container" data-category="romance">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-rose-600 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#4 I’M TOTALLY INTO YOU</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-rose-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">I like you more than a friend / I really like you.</td>
+                                    <td class="py-3 pl-2 italic">He looked into her eyes and said, <strong>“I’m totally into you”</strong>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">I’m very attracted to you.</td>
+                                    <td class="py-3 pl-2 italic">It’s true. <strong>I’m totally into you</strong>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card #5 -->
+            <div class="card-container" data-category="romance">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-rose-600 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#5 WE’RE MEANT FOR EACH OTHER</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-rose-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">Perfectly matched.</td>
+                                    <td class="py-3 pl-2 italic">He whispered into her ear, <strong>“We’re meant for each other”</strong>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">Very well suited for each other romantically.</td>
+                                    <td class="py-3 pl-2 italic">The two of them are <strong>meant for each other</strong>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card #6 -->
+            <div class="card-container" data-category="romance">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-rose-600 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#6 YOU’RE MY PRINCE CHARMING</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-rose-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">You are my perfect partner.</td>
+                                    <td class="py-3 pl-2 italic">Every little girl grows up wanting to find her <strong>prince charming</strong>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">A man who fulfills all of a woman’s dreams.</td>
+                                    <td class="py-3 pl-2 italic">I think you are my <strong>prince charming</strong>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card #7 -->
+            <div class="card-container" data-category="business">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-blue-700 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#7 “24/7”</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-blue-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">24 hours a day, 7 days a week.</td>
+                                    <td class="py-3 pl-2 italic">In New York City, a lot of stores are open <strong>24/7</strong>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">Consistently, without a break.</td>
+                                    <td class="py-3 pl-2 italic">I had to leave my previous apartment because my neighbors played loud music <strong>24/7</strong>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card #8 -->
+            <div class="card-container" data-category="business">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-blue-700 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#8 AT STAKE</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-blue-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">To be won or lost; to be at risk.</td>
+                                    <td class="py-3 pl-2 italic">Many jobs will be <strong>at stake</strong> if this deal does not happen.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">To be the issue or something in question.</td>
+                                    <td class="py-3 pl-2 italic">There is a great deal <strong>at stake</strong>, so please think carefully.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card #9 -->
+            <div class="card-container" data-category="business">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-blue-700 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#9 YES MAN</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-blue-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">A weak person who always agrees with their superior at work.</td>
+                                    <td class="py-3 pl-2 italic">Michael is the <strong>yes man</strong> of our office.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">A person that does whatever he is told no matter what.</td>
+                                    <td class="py-3 pl-2 italic">Stop being a <strong>yes man</strong>. You should voice your opinion.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- /#card-grid -->
+
+        <!-- Conclusion Footer (Delayed Part) -->
+        <div class="mt-12 bg-white rounded-lg shadow-xl p-8 text-center border-t-4 border-emerald-500">
+            <h2 class="text-4xl font-bold text-emerald-700 mb-2">YOU DID IT!</h2>
+            <p class="text-xl text-neutral-600">You've reviewed nine essential expressions. Remember to use each one at least once today. Try them in a text message, an email, or even just by talking to yourself.</p>
+            <p class="text-xl mt-2 font-bold text-emerald-700">You can do it! You can Speak English!</p>
+        </div>
+
+    </main>
+
+    <script>
+        /**
+         * Toggles the visibility of the "back" of a flashcard.
+         * @param {HTMLElement} cardElement - The .card element that was clicked.
+         */
+        function toggleCard(cardElement) {
+            const cardBack = cardElement.querySelector('.card-back');
+            if (cardBack) {
+                cardBack.classList.toggle('hidden');
+            }
+        }
+
+        /**
+         * Filters the cards displayed on the page based on category.
+         * @param {string} filter - The category to show ('all', 'everyday', 'romance', 'business').
+         * @param {HTMLElement} buttonElement - The nav button that was clicked.
+         */
+        function filterCards(filter, buttonElement) {
+            // 1. Update active state on navigation buttons
+            document.querySelectorAll('.nav-button').forEach(button => {
+                button.classList.remove('active-nav');
+            });
+            buttonElement.classList.add('active-nav');
+
+            // 2. Filter the cards
+            const cardGrid = document.getElementById('card-grid');
+            const cards = cardGrid.querySelectorAll('.card-container');
+
+            cards.forEach(card => {
+                const cardCategory = card.dataset.category;
+                if (filter === 'all' || cardCategory === filter) {
+                    card.classList.remove('hidden');
+                    card.style.transform = 'scale(1)';
+                    card.style.opacity = '1';
+                } else {
+                    card.classList.add('hidden');
+                    card.style.transform = 'scale(0.9)';
+                    card.style.opacity = '0';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
