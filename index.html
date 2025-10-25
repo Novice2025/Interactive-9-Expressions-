@@ -10,7 +10,7 @@
         - Report Info: A list of 9 English expressions, grouped by theme.
         - Goal: Interactive learning and self-quizzing.
         - Presentation Method: A grid of "flashcard" components built with HTML/Tailwind. The "front" shows the expression; the "back" (initially hidden) shows the meaning/example table.
-        - Interaction: 1) Click-to-Reveal: Clicking a card toggles the 'hidden' class on the card-back 'div' (Vanilla JS). 2) Filtering: Clicking a nav button filters the grid by adding/removing 'hidden' from parent card-containers based on a 'data-category' attribute (Vanilla JS).
+        - Interaction: 1) Click-to-Reveal: Clicking a card toggles the 'hidden' class on the card-back 'div' (Vanilla JS). 2) Filtering: Clicking a nav button filters the grid by adding/removing 'hidden' from parent card-containers based on a 'data-category' attribute (Vanilla JS). 3) All 19 expressions are now included.
         - Justification: This structure directly encourages user interaction, active recall, and focused study by category.
         - Library/Method: HTML, Tailwind CSS, and Vanilla JavaScript.
         - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
@@ -39,23 +39,23 @@
 </head>
 <body class="bg-amber-50 text-neutral-800 min-h-screen">
 
-    <!-- Header and Navigation -->
+    <!-- Header and Navigation - COUNTS ARE CORRECT -->
     <header class="bg-white shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col sm:flex-row justify-between items-center py-4">
                 <h1 class="text-3xl font-bold text-emerald-700">Interactive Expressions</h1>
                 <nav class="mt-4 sm:mt-0 flex flex-wrap justify-center gap-2">
                     <button class="nav-button active-nav px-4 py-2 rounded-full text-sm font-medium text-neutral-700 bg-neutral-200 hover:bg-neutral-300" data-filter="all" onclick="filterCards('all', this)">
-                        All (9)
+                        All (19)
                     </button>
                     <button class="nav-button px-4 py-2 rounded-full text-sm font-medium text-neutral-700 bg-neutral-200 hover:bg-neutral-300" data-filter="everyday" onclick="filterCards('everyday', this)">
-                        Everyday (3)
+                        Everyday (7)
                     </button>
                     <button class="nav-button px-4 py-2 rounded-full text-sm font-medium text-neutral-700 bg-neutral-200 hover:bg-neutral-300" data-filter="romance" onclick="filterCards('romance', this)">
-                        Romance (3)
+                        Romance (6)
                     </button>
                     <button class="nav-button px-4 py-2 rounded-full text-sm font-medium text-neutral-700 bg-neutral-200 hover:bg-neutral-300" data-filter="business" onclick="filterCards('business', this)">
-                        Business (3)
+                        Business (6)
                     </button>
                 </nav>
             </div>
@@ -78,7 +78,7 @@
         <!-- Card Grid -->
         <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- Card #1 -->
+            <!-- Card #1 (Original #1) -->
             <div class="card-container" data-category="everyday">
                 <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
                     <div class="card-front p-6 bg-emerald-700 text-white flex-grow">
@@ -107,7 +107,7 @@
                 </div>
             </div>
 
-            <!-- Card #2 -->
+            <!-- Card #2 (Original #2) -->
             <div class="card-container" data-category="everyday">
                 <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
                     <div class="card-front p-6 bg-emerald-700 text-white flex-grow">
@@ -136,7 +136,7 @@
                 </div>
             </div>
 
-            <!-- Card #3 -->
+            <!-- Card #3 (Original #3) -->
             <div class="card-container" data-category="everyday">
                 <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
                     <div class="card-front p-6 bg-emerald-700 text-white flex-grow">
@@ -164,12 +164,144 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Card #4 (Previously #10) - Everyday -->
+            <div class="card-container" data-category="everyday">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-emerald-700 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#4 HAND-ME-DOWNS</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-emerald-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">A garment or other item that has been passed on from another person.</td>
+                                    <td class="py-3 pl-2 italic">I always had <strong>hand-me-down</strong> clothes growing up because I had two older sisters.</td>
+                                </tr>
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">Anything that has already been used by another.</td>
+                                    <td class="py-3 pl-2 italic">This jacket was a <strong>hand-me-down</strong>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">Used items passed from older siblings to younger ones.</td>
+                                    <td class="py-3 pl-2 italic">As a child I was always dressed in my sister’s <strong>hand-me-downs</strong>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-            <!-- Card #4 -->
+            <!-- Card #5 (Previously #11) - Everyday -->
+            <div class="card-container" data-category="everyday">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-emerald-700 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#5 DRESS UP</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-emerald-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">To dress in a fancy dress/outfit.</td>
+                                    <td class="py-3 pl-2 italic">They <strong>dress themselves up</strong> in their finest clothing.</td>
+                                </tr>
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">To dress in smart or formal clothes.</td>
+                                    <td class="py-3 pl-2 italic">Please <strong>dress up</strong> for the dance.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">To improve the appearance or impression of something.</td>
+                                    <td class="py-3 pl-2 italic">He decided to <strong>dress up</strong> for his first date.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card #6 (Previously #12) - Everyday -->
+            <div class="card-container" data-category="everyday">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-emerald-700 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#6 DRESS DOWN</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-emerald-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">To dress in a casual or informal manner.</td>
+                                    <td class="py-3 pl-2 italic">I <strong>dress down</strong> if I know I’m just going to be moving boxes of documents at work.</td>
+                                </tr>
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">To dress informally.</td>
+                                    <td class="py-3 pl-2 italic">I <strong>dressed down</strong> for the casual party.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">To wear casual clothes, often at work (opposite of dress up).</td>
+                                    <td class="py-3 pl-2 italic">At my job we normally <strong>dress down</strong> on Fridays.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card #7 (Previously #19) - Everyday (General Idiom) -->
+            <div class="card-container" data-category="everyday">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-emerald-700 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#7 BLACK SHEEP</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-emerald-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">A member of a family or group who is regarded as a disgrace to them.</td>
+                                    <td class="py-3 pl-2 italic">Rachel is the <strong>black sheep</strong> in the family because she is an artist.</td>
+                                </tr>
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">A person who brings embarrassment or shame to his or her family.</td>
+                                    <td class="py-3 pl-2 italic">He’s the <strong>black sheep</strong> of the family.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">To be the outcast of the family.</td>
+                                    <td class="py-3 pl-2 italic">John was the <strong>black sheep</strong> of the family, so he always felt lonely.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card #8 (Original #4) - Romance -->
             <div class="card-container" data-category="romance">
                 <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
                     <div class="card-front p-6 bg-rose-600 text-white flex-grow">
-                        <h3 class="text-3xl font-bold">#4 I’M TOTALLY INTO YOU</h3>
+                        <h3 class="text-3xl font-bold">#8 I’M TOTALLY INTO YOU</h3>
                     </div>
                     <div class="card-back p-6 hidden border-t-4 border-rose-200">
                         <table class="w-full text-left table-auto">
@@ -194,11 +326,11 @@
                 </div>
             </div>
 
-            <!-- Card #5 -->
+            <!-- Card #9 (Original #5) - Romance -->
             <div class="card-container" data-category="romance">
                 <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
                     <div class="card-front p-6 bg-rose-600 text-white flex-grow">
-                        <h3 class="text-3xl font-bold">#5 WE’RE MEANT FOR EACH OTHER</h3>
+                        <h3 class="text-3xl font-bold">#9 WE’RE MEANT FOR EACH OTHER</h3>
                     </div>
                     <div class="card-back p-6 hidden border-t-4 border-rose-200">
                         <table class="w-full text-left table-auto">
@@ -223,11 +355,11 @@
                 </div>
             </div>
 
-            <!-- Card #6 -->
+            <!-- Card #10 (Original #6) - Romance -->
             <div class="card-container" data-category="romance">
                 <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
                     <div class="card-front p-6 bg-rose-600 text-white flex-grow">
-                        <h3 class="text-3xl font-bold">#6 YOU’RE MY PRINCE CHARMING</h3>
+                        <h3 class="text-3xl font-bold">#10 YOU’RE MY PRINCE CHARMING</h3>
                     </div>
                     <div class="card-back p-6 hidden border-t-4 border-rose-200">
                         <table class="w-full text-left table-auto">
@@ -251,12 +383,111 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Card #11 (Previously #16) - Romance -->
+            <div class="card-container" data-category="romance">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-rose-600 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#11 ASK HIM/HER OUT</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-rose-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">To invite someone to go out to something or some place (sometimes on a date).</td>
+                                    <td class="py-3 pl-2 italic">She couldn’t go, so he <strong>asked out</strong> someone else.</td>
+                                </tr>
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">To invite someone for a visit or a social engagement.</td>
+                                    <td class="py-3 pl-2 italic">We’ve been <strong>asked out</strong> to dinner twice this week.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">To invite someone on a date.</td>
+                                    <td class="py-3 pl-2 italic">I am so happy that Sally finally <strong>asked me out</strong> to a movie.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-            <!-- Card #7 -->
+            <!-- Card #12 (Previously #17) - Romance -->
+            <div class="card-container" data-category="romance">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-rose-600 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#12 HIT ON A WOMAN/MAN</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-rose-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">To flirt with someone.</td>
+                                    <td class="py-3 pl-2 italic">The women were all <strong>hitting on</strong> George, but he didn't complain.</td>
+                                </tr>
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">To make a pass at someone.</td>
+                                    <td class="py-3 pl-2 italic">I thought he was going to <strong>hit on me</strong>, but he was too shy.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">To clearly show romantic or sexual interest in someone.</td>
+                                    <td class="py-3 pl-2 italic">She <strong>hit on him</strong> but he didn't realize it.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card #13 (Previously #18) - Romance -->
+            <div class="card-container" data-category="romance">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-rose-600 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#13 STAND HIM/HER UP</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-rose-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">To fail to keep an appointment with a boyfriend or girlfriend (a date).</td>
+                                    <td class="py-3 pl-2 italic">He <strong>stood up</strong> his date while he played basketball with the guys.</td>
+                                </tr>
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">To break a date by not showing up.</td>
+                                    <td class="py-3 pl-2 italic">Sally <strong>stood him up</strong> because she was mad.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">To intentionally fail to meet someone you have arranged to see.</td>
+                                    <td class="py-3 pl-2 italic">How could he <strong>stand you up</strong> on your first date?</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card #14 (Original #7) - Business -->
             <div class="card-container" data-category="business">
                 <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
                     <div class="card-front p-6 bg-blue-700 text-white flex-grow">
-                        <h3 class="text-3xl font-bold">#7 “24/7”</h3>
+                        <h3 class="text-3xl font-bold">#14 “24/7”</h3>
                     </div>
                     <div class="card-back p-6 hidden border-t-4 border-blue-200">
                         <table class="w-full text-left table-auto">
@@ -281,11 +512,11 @@
                 </div>
             </div>
 
-            <!-- Card #8 -->
+            <!-- Card #15 (Original #8) - Business -->
             <div class="card-container" data-category="business">
                 <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
                     <div class="card-front p-6 bg-blue-700 text-white flex-grow">
-                        <h3 class="text-3xl font-bold">#8 AT STAKE</h3>
+                        <h3 class="text-3xl font-bold">#15 AT STAKE</h3>
                     </div>
                     <div class="card-back p-6 hidden border-t-4 border-blue-200">
                         <table class="w-full text-left table-auto">
@@ -310,11 +541,11 @@
                 </div>
             </div>
 
-            <!-- Card #9 -->
+            <!-- Card #16 (Original #9) - Business -->
             <div class="card-container" data-category="business">
                 <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
                     <div class="card-front p-6 bg-blue-700 text-white flex-grow">
-                        <h3 class="text-3xl font-bold">#9 YES MAN</h3>
+                        <h3 class="text-3xl font-bold">#16 YES MAN</h3>
                     </div>
                     <div class="card-back p-6 hidden border-t-4 border-blue-200">
                         <table class="w-full text-left table-auto">
@@ -339,12 +570,112 @@
                 </div>
             </div>
 
+            <!-- Card #17 (Previously #13) - Business -->
+            <div class="card-container" data-category="business">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-blue-700 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#17 KNOW/LEARN THE ROPES</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-blue-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">To understand how to do a particular job or activity.</td>
+                                    <td class="py-3 pl-2 italic">Anyone who’s been doing the job for a few months should <strong>know the ropes</strong> by now.</td>
+                                </tr>
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">To learn how to do something, especially a job.</td>
+                                    <td class="py-3 pl-2 italic">Once I <strong>learn the ropes</strong> at my new job, I won’t be so nervous.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">To be familiar with the procedures of a job.</td>
+                                    <td class="py-3 pl-2 italic">We need someone who <strong>knows the ropes</strong> to teach the new staff.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card #18 (Previously #14) - Business -->
+            <div class="card-container" data-category="business">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-blue-700 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#18 LINE OF WORK</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-blue-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">Job or occupation.</td>
+                                    <td class="py-3 pl-2 italic">The majority of you chose your <strong>line of work</strong> because you want to help.</td>
+                                </tr>
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">The principal activity in your life that you do to earn money.</td>
+                                    <td class="py-3 pl-2 italic">In my <strong>line of work</strong>, being surrounded by gadgets is required.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">One’s profession.</td>
+                                    <td class="py-3 pl-2 italic">This <strong>line of work</strong> requires lots of effort.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card #19 (Previously #15) - Business -->
+            <div class="card-container" data-category="business">
+                <div class="card bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer h-full flex flex-col" onclick="toggleCard(this)">
+                    <div class="card-front p-6 bg-blue-700 text-white flex-grow">
+                        <h3 class="text-3xl font-bold">#19 ON THE BACK BURNER</h3>
+                    </div>
+                    <div class="card-back p-6 hidden border-t-4 border-blue-200">
+                        <table class="w-full text-left table-auto">
+                            <thead class="border-b-2 border-neutral-300">
+                                <tr>
+                                    <th class="py-2 text-neutral-800">Meaning</th>
+                                    <th class="py-2 text-neutral-800">Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-neutral-700">
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">Having low priority.</td>
+                                    <td class="py-3 pl-2 italic">We’ve all had to put our plans <strong>on the back burner</strong> for a while.</td>
+                                </tr>
+                                <tr class="border-b border-neutral-200">
+                                    <td class="py-3 pr-2">Something that is temporarily not being dealt with or considered.</td>
+                                    <td class="py-3 pl-2 italic">The building project is <strong>on the back burner</strong> for now.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 pr-2">A matter that is currently delayed or postponed.</td>
+                                    <td class="py-3 pl-2 italic">This matter was <strong>on the back burner</strong> for a long time.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+
         </div> <!-- /#card-grid -->
 
         <!-- Conclusion Footer (Delayed Part) -->
         <div class="mt-12 bg-white rounded-lg shadow-xl p-8 text-center border-t-4 border-emerald-500">
             <h2 class="text-4xl font-bold text-emerald-700 mb-2">YOU DID IT!</h2>
-            <p class="text-xl text-neutral-600">You've reviewed nine essential expressions. Remember to use each one at least once today. Try them in a text message, an email, or even just by talking to yourself.</p>
+            <p class="text-xl text-neutral-600">You've reviewed nineteen essential expressions. Remember to use each one at least once today. Try them in a text message, an email, or even just by talking to yourself.</p>
             <p class="text-xl mt-2 font-bold text-emerald-700">You can do it! You can Speak English!</p>
         </div>
 
